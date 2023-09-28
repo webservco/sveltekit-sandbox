@@ -1,12 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+<head>
+    <link rel="apple-touch-icon" href="%sveltekit.assets%/img/icons/apple-touch-icon.png">
+    <link rel="icon" href="%sveltekit.assets%/img/icons/favicon.ico">
+    <link rel="manifest" href="%sveltekit.assets%/app.webmanifest" />
+    <!-- @todo add css
+    <link rel="stylesheet" href="./css/app.css">
+    -->
+    <!-- @todo use dynamic color from css file -->
+
+    <meta charset="utf-8"/>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0AA">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0AA">
+
+    <meta name="viewport" content="width=device-width"/>
+    %sveltekit.head%
+</head>
+
+<body>
+<header>
+    <nav>H</nav>
+</header>
+
+<h1>Title</h1>
+
+<div style="display: contents">%sveltekit.body%</div>
+</body>
 </html>
