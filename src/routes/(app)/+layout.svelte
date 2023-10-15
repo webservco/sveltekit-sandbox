@@ -7,6 +7,7 @@ https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
   <nav>
     H
     <a href="/">home</a>
+    <a href="/items">items</a>
     <a href="/about">about</a>
   </nav>
 </header>
