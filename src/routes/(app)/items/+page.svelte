@@ -1,3 +1,8 @@
+<!--
+Item list page.
+
+https://learn.svelte.dev/tutorial/page-data
+-->
 <script>
   export let data;
 </script>
