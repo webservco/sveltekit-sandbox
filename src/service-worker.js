@@ -7,6 +7,9 @@ import { build, files, version } from '$service-worker';
  * Inspired from:
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/CycleTracker/Service_workers
  * https://kit.svelte.dev/docs/service-workers
+ *
+ * Important: in order to prevent type errors (vscode and svelte-check),
+ * make sure file is in `src/service-worker.js` and not `src/service-worker/index.js`
  */
 
 const APP_CACHE_NAME = `hrdr-${version}`;
