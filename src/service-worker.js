@@ -9,6 +9,8 @@
  * make sure file is in `src/service-worker.js` and not `src/service-worker/index.js`
  *
  * https://kit.svelte.dev/docs/service-workers#type-safety
+ *
+ * @todo study: [SvelteKit service worker example](https://gist.github.com/khromov/6042d297f9d7ec356da1a7c85f6601c8)
  */
 
 /// <reference types="@sveltejs/kit" />
