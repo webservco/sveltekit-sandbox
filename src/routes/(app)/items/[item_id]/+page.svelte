@@ -9,4 +9,4 @@ https://learn.svelte.dev/tutorial/page-data
 
 <h1>{data.item?.item_name}</h1>
 
-<div>{@html data.item?.item_description}</div>
+<div>{data.item?.item_description}</div>
