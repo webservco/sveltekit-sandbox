@@ -14,5 +14,5 @@ https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 
 <h1>Hoard-R</h1>
 
+<!-- +page.svelte is rendered in this <slot> -->
 <slot />
-
