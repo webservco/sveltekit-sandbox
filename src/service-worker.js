@@ -1,6 +1,3 @@
-/// <reference types="@sveltejs/kit" />
-import { build, files, version } from '$service-worker';
-
 /**
  * Service worker (svelte).
  *
@@ -10,7 +7,18 @@ import { build, files, version } from '$service-worker';
  *
  * Important: in order to prevent type errors (vscode and svelte-check),
  * make sure file is in `src/service-worker.js` and not `src/service-worker/index.js`
+ *
+ * https://kit.svelte.dev/docs/service-workers#type-safety
  */
+
+/// <reference types="@sveltejs/kit" />
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+
+const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
+
+import { build, files, version } from '$service-worker';
 
 const APP_CACHE_NAME = `hrdr-${version}`;
 
@@ -24,7 +32,7 @@ const APP_STATIC_ASSETS = [
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/CycleTracker/Service_workers#saving_the_cache_on_pwa_installation
  * Install event only triggers once.
  */
-self.addEventListener('install', (event) => {
+sw.addEventListener('install', (event) => {
 	console.log('[Service Worker] install event');
 
 	event.waitUntil(
@@ -41,7 +49,7 @@ self.addEventListener('install', (event) => {
  * Updating the PWA and deleting old caches
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/CycleTracker/Service_workers#updating_the_pwa_and_deleting_old_caches
  */
-self.addEventListener('activate', (event) => {
+sw.addEventListener('activate', (event) => {
 	console.log('[Service Worker] activate event');
 
 	event.waitUntil(
@@ -54,8 +62,8 @@ self.addEventListener('activate', (event) => {
 					}
 				})
 			);
-			// Seems this (from Firefox) si discouraged (by Google):
-			await clients.claim();
+			// Seems this (from Firefox) is discouraged (by Google):
+			await sw.clients.claim();
 		})()
 	);
 });
@@ -67,7 +75,7 @@ self.addEventListener('activate', (event) => {
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/App_structure
  * This part implemented from: https://kit.svelte.dev/docs/service-workers
  */
-self.addEventListener('fetch', (event) => {
+sw.addEventListener('fetch', (event) => {
 	console.log(`[Service Worker] fetch event: ${event.request.url}`);
 
 	// ignore POST requests etc
