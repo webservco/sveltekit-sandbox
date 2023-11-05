@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { appVersion } from '$lib/appVersion';
 	import '../app.postcss';
 
 	// Floating UI for Popups
@@ -7,4 +8,6 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
 
+
+<!-- +page.svelte is rendered in this <slot> -->
 <slot />
