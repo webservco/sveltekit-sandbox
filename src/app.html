@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-	<!-- This is the page template. -->
+<html lang="en" class="dark">
 	<head>
-		<link rel="apple-touch-icon" href="%sveltekit.assets%/img/icons/apple-touch-icon.png" />
-		<link rel="icon" href="%sveltekit.assets%/img/icons/favicon.ico" />
-		<link rel="manifest" href="%sveltekit.assets%/app.webmanifest" />
-		<!-- @todo add css
-    <link rel="stylesheet" href="./css/app.css">
-    -->
-		<!-- @todo use dynamic color from css file -->
-
 		<meta charset="utf-8" />
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#0AA" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0AA" />
-
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 	</head>
-
-	<body>
+	<body data-sveltekit-preload-data="hover" data-theme="skeleton">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
