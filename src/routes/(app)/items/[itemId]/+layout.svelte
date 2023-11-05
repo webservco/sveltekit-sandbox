@@ -21,11 +21,11 @@ https://learn.svelte.dev/tutorial/layout-data
 			<!-- Data comes from parent `+layout.server.js` -->
 			{#each data.summaries as { id, name }}
 				<!--
-                    `$page.params.item_id` is a string including the fake file extension
-                    So for item_id 1, it will be "1.html".
+                    `$page.params.itemId` is a string including the fake file extension
+                    So for itemId 1, it will be "1.html".
                     Workaround to get the actual id: `parseInt`.
                 -->
-				{#if id !== parseInt($page.params.item_id)}
+				{#if id !== parseInt($page.params.itemId)}
 					<li>
 						<a href="/items/{id}.html">{name}</a>
 					</li>

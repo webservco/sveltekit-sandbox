@@ -4,7 +4,7 @@ https://kit.svelte.dev/docs/routing#layout
 https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 -->
 <script>
-	import { app_version } from "$lib/app_version";
+	import { appVersion } from '$lib/appVersion';
 </script>
 
 <header>
@@ -12,7 +12,7 @@ https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 		H
 		<a href="/">Home</a>
 		<a href="/items">Items</a>
-		<a href="/visit_counter">Visit counter</a>
+		<a href="/visitCounter">Visit counter</a>
 		<a href="/about">About</a>
 	</nav>
 </header>
@@ -23,6 +23,6 @@ https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 <slot />
 
 <footer>
-	<hr>
-	<small>v{app_version}</small>
+	<hr />
+	<small>v{appVersion}</small>
 </footer>

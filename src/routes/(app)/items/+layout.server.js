@@ -12,13 +12,13 @@
  * https://kit.svelte.dev/docs/load
  */
 
-import { items } from './items_data.js';
+import { items } from './itemsData.js';
 
 export function load() {
 	return {
 		summaries: items.map((item) => ({
-			id: item.item_id,
-			name: item.item_name
+			id: item.itemId,
+			name: item.itemName
 		}))
 	};
 }

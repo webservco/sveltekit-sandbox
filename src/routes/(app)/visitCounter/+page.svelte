@@ -8,4 +8,4 @@
 	export let data;
 </script>
 
-<p>Current page visit count: {data.visit_counter}</p>
+<p>Current page visit count: {data.visitCounter}</p>
