@@ -3,6 +3,10 @@ Root layout
 https://kit.svelte.dev/docs/routing#layout
 https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 -->
+<script>
+	import { app_version } from "$lib/app_version";
+</script>
+
 <header>
 	<nav>
 		H
@@ -17,3 +21,8 @@ https://kit.svelte.dev/docs/advanced-routing#advanced-layouts
 
 <!-- +page.svelte is rendered in this <slot> -->
 <slot />
+
+<footer>
+	<hr>
+	<small>v{app_version}</small>
+</footer>
