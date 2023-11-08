@@ -7,3 +7,14 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+
+
+interface NoteInput {
+	title: string
+	option: int
+	description: string
+}
+
+interface Note extends NoteInput {
+	favorite: boolean
+}
