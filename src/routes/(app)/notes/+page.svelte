@@ -1,5 +1,5 @@
 <script lang="ts">
-    import NoteCard from "../../../NoteCard.svelte";
+    import NoteCard from "$lib/notes/NoteCard.svelte";
     import type { PageServerData } from "./$types";
     import { noteStore, addNote } from "./NoteStore";
 
@@ -13,9 +13,10 @@
 
     noteStore.set(data.notes);
 </script>
-<div class="flex justify-center">
-    <div class="grid grid-cols-1 gap-4 min-w-full md:min-w-[750px]">
-        <h3 class="text-center py-6">Note</h3>
+
+<div class="container p-10 space-y-4">
+
+        <h3>Note</h3>
 
         <div class="card p-4 w-full text-token space-y-4">
             <label class="label">
@@ -44,11 +45,12 @@
             </button>
         </div>
 
-        <div class="text-center py-6">
-            <h2>Notes</h2>
-        </div>
+        <hr>
+
+        <h3>Notes</h3>
+
         {#each $noteStore as note, index}
             <NoteCard note={note} index={index} />
         {/each}
-    </div>
+
 </div>
