@@ -70,7 +70,14 @@
 		<Navigation />
 	</svelte:fragment>
 
-	<!-- +page.svelte is rendered in this <slot> -->
-	<slot />
+	<div class="container p-10 space-y-4">
+		<!-- +page.svelte is rendered in this <slot> -->
+		<slot />
+	</div>
+
+	<svelte:fragment slot="footer">
+		<hr />
+		<small>v{appVersion}</small>
+	</svelte:fragment>
 
 </AppShell>

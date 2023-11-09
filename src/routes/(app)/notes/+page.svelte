@@ -14,9 +14,7 @@
     noteStore.set(data.notes);
 </script>
 
-<div class="container p-10 space-y-4">
-
-        <h3>Note</h3>
+<h3>Note</h3>
 
         <div class="card p-4 w-full text-token space-y-4">
             <label class="label">
@@ -52,5 +50,3 @@
         {#each $noteStore as note, index}
             <NoteCard note={note} index={index} />
         {/each}
-
-</div>
