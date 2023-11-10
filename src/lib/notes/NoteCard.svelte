@@ -1,6 +1,6 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
-  import { deleteNote, toggleFavorite } from '../../routes/(app)/notes/NoteStore';
+  import { deleteNote, toggleFavorite } from './NoteStore';
 
   export let index: number;
 

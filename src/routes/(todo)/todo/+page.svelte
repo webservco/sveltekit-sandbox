@@ -19,7 +19,6 @@
 
 <hr>
 
-
 <div class="centered">
 	<h2>Todos</h2>
 

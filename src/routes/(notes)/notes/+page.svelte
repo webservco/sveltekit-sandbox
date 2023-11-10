@@ -1,7 +1,7 @@
 <script lang="ts">
   import NoteCard from '$lib/notes/NoteCard.svelte';
+  import { noteStore, addNote } from '$lib/notes/NoteStore';
   import type { PageServerData } from './$types';
-  import { noteStore, addNote } from './NoteStore';
 
   export let data: PageServerData;
 
