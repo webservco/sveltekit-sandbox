@@ -1,3 +1,8 @@
+/*
+Volatile database (lost even on page reload).
+From the SvelteKit+Typescript YT tutorial
+*/
+
 import { writable, get } from "svelte/store";
 
 export const noteStore = writable<Note[]>([]);
