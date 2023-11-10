@@ -5,7 +5,7 @@
 -->
 
 <script>
-	export let data;
+  export let data;
 </script>
 
 <p>Current page visit count: {data.visitCounter}</p>

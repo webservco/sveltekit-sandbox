@@ -15,10 +15,10 @@
 import { items } from './itemsData.js';
 
 export function load() {
-	return {
-		summaries: items.map((item) => ({
-			id: item.itemId,
-			name: item.itemName
-		}))
-	};
+  return {
+    summaries: items.map((item) => ({
+      id: item.itemId,
+      name: item.itemName
+    }))
+  };
 }

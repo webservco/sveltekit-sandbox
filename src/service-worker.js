@@ -25,8 +25,8 @@ import { build, files, version } from '$service-worker';
 const APP_CACHE_NAME = `hrdr-${version}`;
 
 const APP_STATIC_ASSETS = [
-	...build, // the app itself
-	...files // everything in `static`
+  ...build, // the app itself
+  ...files // everything in `static`
 ];
 
 /**
@@ -35,16 +35,16 @@ const APP_STATIC_ASSETS = [
  * Install event only triggers once.
  */
 sw.addEventListener('install', (event) => {
-	console.log('[Service Worker] install event');
+  console.log('[Service Worker] install event');
 
-	event.waitUntil(
-		(async () => {
-			const cache = await caches.open(APP_CACHE_NAME);
-			console.log('[Service Worker] Caching all.');
-			// Note: with addAll, if one fails, all are discarded.
-			return cache.addAll(APP_STATIC_ASSETS);
-		})()
-	);
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(APP_CACHE_NAME);
+      console.log('[Service Worker] Caching all.');
+      // Note: with addAll, if one fails, all are discarded.
+      return cache.addAll(APP_STATIC_ASSETS);
+    })()
+  );
 });
 
 /**
@@ -52,22 +52,22 @@ sw.addEventListener('install', (event) => {
  * https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/CycleTracker/Service_workers#updating_the_pwa_and_deleting_old_caches
  */
 sw.addEventListener('activate', (event) => {
-	console.log('[Service Worker] activate event');
+  console.log('[Service Worker] activate event');
 
-	event.waitUntil(
-		(async () => {
-			const names = await caches.keys();
-			await Promise.all(
-				names.map((name) => {
-					if (name !== APP_CACHE_NAME) {
-						return caches.delete(name);
-					}
-				})
-			);
-			// Seems this (from Firefox) is discouraged (by Google):
-			await sw.clients.claim();
-		})()
-	);
+  event.waitUntil(
+    (async () => {
+      const names = await caches.keys();
+      await Promise.all(
+        names.map((name) => {
+          if (name !== APP_CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      );
+      // Seems this (from Firefox) is discouraged (by Google):
+      await sw.clients.claim();
+    })()
+  );
 });
 
 /**
@@ -78,34 +78,34 @@ sw.addEventListener('activate', (event) => {
  * This part implemented from: https://kit.svelte.dev/docs/service-workers
  */
 sw.addEventListener('fetch', (event) => {
-	console.log(`[Service Worker] fetch event: ${event.request.url}`);
+  console.log(`[Service Worker] fetch event: ${event.request.url}`);
 
-	// ignore POST requests etc
-	if (event.request.method !== 'GET') return;
+  // ignore POST requests etc
+  if (event.request.method !== 'GET') return;
 
-	async function respond() {
-		const url = new URL(event.request.url);
-		const cache = await caches.open(APP_CACHE_NAME);
+  async function respond() {
+    const url = new URL(event.request.url);
+    const cache = await caches.open(APP_CACHE_NAME);
 
-		// `build`/`files` can always be served from the cache
-		if (APP_STATIC_ASSETS.includes(url.pathname)) {
-			return cache.match(url.pathname);
-		}
+    // `build`/`files` can always be served from the cache
+    if (APP_STATIC_ASSETS.includes(url.pathname)) {
+      return cache.match(url.pathname);
+    }
 
-		// for everything else, try the network first, but
-		// fall back to the cache if we're offline
-		try {
-			const response = await fetch(event.request);
+    // for everything else, try the network first, but
+    // fall back to the cache if we're offline
+    try {
+      const response = await fetch(event.request);
 
-			if (response.status === 200) {
-				cache.put(event.request, response.clone());
-			}
+      if (response.status === 200) {
+        cache.put(event.request, response.clone());
+      }
 
-			return response;
-		} catch {
-			return cache.match(event.request);
-		}
-	}
+      return response;
+    } catch {
+      return cache.match(event.request);
+    }
+  }
 
-	event.respondWith(respond());
+  event.respondWith(respond());
 });

@@ -5,18 +5,18 @@
  */
 
 export function load({ cookies }) {
-	const cookieName = 'visitCounter';
+  const cookieName = 'visitCounter';
 
-	// Define
-	let visitCounter = parseInt(cookies.get(cookieName) || '0');
+  // Define
+  let visitCounter = parseInt(cookies.get(cookieName) || '0');
 
-	// Increment
-	visitCounter += 1;
+  // Increment
+  visitCounter += 1;
 
-	// Save
-	cookies.set(cookieName, visitCounter.toString(), { path: '/' });
+  // Save
+  cookies.set(cookieName, visitCounter.toString(), { path: '/' });
 
-	return {
-		visitCounter
-	};
+  return {
+    visitCounter
+  };
 }
