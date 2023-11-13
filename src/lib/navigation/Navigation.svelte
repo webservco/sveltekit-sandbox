@@ -10,7 +10,6 @@
 
 <nav class="list-nav p-4">
   <ul>
-
     <!-- (app) -->
     <li><a href="/" on:click={drawerClose}>Home</a></li>
 
@@ -26,7 +25,5 @@
 
     <!-- (h) Hoard-R -->
     <li><a href="/items" on:click={drawerClose}>Items</a></li>
-
-
   </ul>
 </nav>

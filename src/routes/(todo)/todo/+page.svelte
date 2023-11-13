@@ -6,7 +6,7 @@
 <script lang="ts">
   export let data;
 
-  import IconTrash from '~icons/heroicons/trash'
+  import IconTrash from '~icons/heroicons/trash';
 </script>
 
 <h2>TODO</h2>
@@ -20,22 +20,22 @@
   </label>
 </form>
 
-<hr>
+<hr />
 
 <div class="centered">
-	<h3>Todo list</h3>
+  <h3>Todo list</h3>
 
-	<ul class="todos">
-		{#each data.items as item (item.id)}
-			<li>
-				<form method="POST" action="?/delete">
-					<input type="hidden" name="itemId" value="{item.id}" />
-					<span>{item.description}</span>
-					<button class="btn btn-icon" aria-label="Complete">
-						<IconTrash />
-					</button>
-				</form>
-			</li>
-		{/each}
-	</ul>
+  <ul class="todos">
+    {#each data.items as item (item.id)}
+      <li>
+        <form method="POST" action="?/delete">
+          <input type="hidden" name="itemId" value={item.id} />
+          <span>{item.description}</span>
+          <button class="btn btn-icon" aria-label="Complete">
+            <IconTrash />
+          </button>
+        </form>
+      </li>
+    {/each}
+  </ul>
 </div>
