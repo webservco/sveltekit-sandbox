@@ -3,7 +3,7 @@ Layout for item details page.
 
 https://learn.svelte.dev/tutorial/layout-data
 -->
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
 
   export let data;

@@ -4,7 +4,7 @@
     https://learn.svelte.dev/tutorial/cookies
 -->
 
-<script>
+<script lang="ts">
   export let data;
 </script>
 

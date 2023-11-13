@@ -3,7 +3,7 @@ Item details page.
 
 https://learn.svelte.dev/tutorial/page-data
 -->
-<script>
+<script lang="ts">
   export let data;
 </script>
 
