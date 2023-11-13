@@ -24,7 +24,7 @@ export function load({ cookies }) {
 }
 
 export const actions = {
-  default: async ({ cookies, request }) => {
+  create: async ({ cookies, request }) => {
     const formData = await request.formData();
     /**
      * Seems "FormDataEntryValue" can be: File | string | null.
@@ -32,7 +32,15 @@ export const actions = {
      */
     const description = formData.get('description') as string;
     if (description !== '') {
-      todoDatabase.addItem(getUserId(cookies), description);
+      todoDatabase.addItem(description, getUserId(cookies));
+    }
+  },
+
+  delete: async ({ cookies, request }) => {
+    const formData = await request.formData();
+    const itemId = formData.get('itemId') as string;
+    if (itemId !== '') {
+      todoDatabase.deleteItem(itemId, getUserId(cookies));
     }
   }
 };

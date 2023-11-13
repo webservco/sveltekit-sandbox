@@ -6,7 +6,7 @@
 
 const database = new Map();
 
-export function addItem(userId: string, description: string) {
+export function addItem(description: string, userId: string) {
   const items = getItems(userId);
 
   items.push({
@@ -16,7 +16,7 @@ export function addItem(userId: string, description: string) {
   });
 }
 
-export function deleteItem(userId: string, itemId: string) {
+export function deleteItem(itemId: string, userId: string) {
   const items = getItems(userId);
   const itemIndex = items.findIndex((item: { id: string }) => item.id === itemId);
 
