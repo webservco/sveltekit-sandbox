@@ -5,6 +5,8 @@
 -->
 <script lang="ts">
   export let data;
+
+  import IconTrash from '~icons/heroicons/trash'
 </script>
 
 <h2>TODO</h2>
@@ -30,7 +32,7 @@
 					<input type="hidden" name="itemId" value="{item.id}" />
 					<span>{item.description}</span>
 					<button class="btn btn-icon" aria-label="Complete">
-						[delete]
+						<IconTrash />
 					</button>
 				</form>
 			</li>
