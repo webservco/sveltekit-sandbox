@@ -4,6 +4,7 @@ From the SvelteKit+Typescript YT tutorial
 */
 
 import { writable, get } from 'svelte/store';
+import type { Note, NoteInput } from '../../app';
 
 export const noteStore = writable<Note[]>([]);
 

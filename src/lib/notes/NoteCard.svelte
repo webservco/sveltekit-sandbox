@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
   import { deleteNote, toggleFavorite } from './NoteStore';
+  import type { Note } from '../../app';
 
   export let index: number;
 
