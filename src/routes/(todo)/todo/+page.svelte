@@ -4,6 +4,10 @@
 	https://learn.svelte.dev/tutorial/named-form-actions
 -->
 <script lang="ts">
+  // [Progressive enhancement](https://learn.svelte.dev/tutorial/progressive-enhancement)
+  import { enhance } from '$app/forms';
+  // Transitions
+  import { fly, slide } from 'svelte/transition';
   import IconTrash from '~icons/heroicons/trash';
 
   export let data;
@@ -28,7 +32,7 @@
   </aside>
 {/if}
 
-<form method="POST" action="?/create">
+<form method="POST" action="?/create" use:enhance>
   <label>
     Add todo:
     <input name="description" autocomplete="off" required value={form?.description ?? ''} />
@@ -42,8 +46,8 @@
 
   <ul class="todos">
     {#each data.items as item (item.id)}
-      <li>
-        <form method="POST" action="?/delete">
+      <li in:fly={{ y: 20 }} out:slide>
+        <form method="POST" action="?/delete" use:enhance>
           <input type="hidden" name="itemId" value={item.id} />
           <span>{item.description}</span>
           <button class="btn btn-icon" aria-label="Complete">
