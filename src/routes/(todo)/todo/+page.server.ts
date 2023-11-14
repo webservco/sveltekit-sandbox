@@ -26,6 +26,9 @@ export function load({ cookies }) {
 
 export const actions = {
   create: async ({ cookies, request }) => {
+    // simulate a slow network by adding an artificial delay
+    await new Promise((fulfil) => setTimeout(fulfil, 3000));
+
     const formData = await request.formData();
     /**
      * Seems "FormDataEntryValue" can be: File | string | null.
@@ -45,6 +48,9 @@ export const actions = {
   },
 
   delete: async ({ cookies, request }) => {
+    // simulate a slow network by adding an artificial delay
+    await new Promise((fulfil) => setTimeout(fulfil, 3000));
+
     const formData = await request.formData();
     const itemId = formData.get('itemId') as string;
     if (itemId !== '') {
