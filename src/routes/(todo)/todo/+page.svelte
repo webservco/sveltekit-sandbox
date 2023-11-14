@@ -4,12 +4,13 @@
 	https://learn.svelte.dev/tutorial/named-form-actions
 -->
 <script lang="ts">
+  import IconTrash from '~icons/heroicons/trash';
+
   export let data;
 
   // For accessing the form after submission (check errors)
   export let form;
 
-  import IconTrash from '~icons/heroicons/trash';
 </script>
 
 <h2>TODO</h2>
