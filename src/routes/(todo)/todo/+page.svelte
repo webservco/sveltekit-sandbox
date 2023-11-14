@@ -6,6 +6,9 @@
 <script lang="ts">
   export let data;
 
+  // For accessing the form after submission (check errors)
+  export let form;
+
   import IconTrash from '~icons/heroicons/trash';
 </script>
 
@@ -13,10 +16,21 @@
 
 <p>userId: {data.userId}</p>
 
+<!-- Check form errors -->
+{#if form?.error}
+  <!-- https://www.skeleton.dev/elements/alerts -->
+  <aside class="alert variant-filled-error">
+    <div class="alert-message">
+      <h3>Error</h3>
+      <p>{form.error}</p>
+    </div>
+  </aside>
+{/if}
+
 <form method="POST" action="?/create">
   <label>
     Add todo:
-    <input name="description" autocomplete="off" required />
+    <input name="description" autocomplete="off" required value={form?.description ?? ''} />
   </label>
 </form>
 

@@ -1,3 +1,4 @@
+import { fail } from '@sveltejs/kit';
 import * as todoDatabase from '$lib/todo/todoDatabase';
 import type { Cookies } from '@sveltejs/kit';
 
@@ -31,8 +32,15 @@ export const actions = {
      * Since we know what it should be, cast it as string.
      */
     const description = formData.get('description') as string;
-    if (description !== '') {
+
+    try {
       todoDatabase.addItem(description, getUserId(cookies));
+    } catch (error) {
+      return fail(422, {
+        // Seems these will be available in the page as "form" properties.
+        description: formData.get('description'),
+        error: error instanceof Error ? error.message : error
+      });
     }
   },
 
