@@ -4,15 +4,25 @@
  * https://learn.svelte.dev/tutorial/the-form-element
  */
 
+import type { TodoItem } from '../../app';
+
 const database = new Map();
 
 export function addItem(description: string, userId: string) {
+  if (description === '') {
+    throw new Error('Missing or invalid description.');
+  }
+
   const items = getItems(userId);
+
+  if (items.find((item: TodoItem) => item.description === description)) {
+    throw new Error('Item already exists.');
+  }
 
   items.push({
     id: generateId(),
     description: description,
-    done: false
+    complete: false
   });
 }
 
@@ -35,7 +45,7 @@ export function getItems(userId: string) {
       {
         id: generateId(),
         description: 'Make a list',
-        done: false
+        complete: false
       }
     ]);
   }

@@ -16,7 +16,7 @@
 <form method="POST" action="?/create">
   <label>
     Add todo:
-    <input name="description" autocomplete="off" />
+    <input name="description" autocomplete="off" required />
   </label>
 </form>
 
