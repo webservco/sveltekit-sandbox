@@ -10,7 +10,7 @@ export default defineConfig({
     sveltekit(),
     purgeCss(),
     Icons({
-      compiler: 'svelte'
-    })
-  ]
+      compiler: 'svelte',
+    }),
+  ],
 });

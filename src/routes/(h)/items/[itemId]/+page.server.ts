@@ -21,6 +21,6 @@ export function load({ params }) {
   if (!item) throw error(404);
 
   return {
-    item
+    item,
   };
 }

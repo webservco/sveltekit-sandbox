@@ -9,7 +9,7 @@
   let formData: NoteInput = {
     title: '',
     option: 1,
-    description: ''
+    description: '',
   };
 
   noteStore.set(data.notes);

@@ -18,7 +18,7 @@ export function load() {
   return {
     summaries: items.map((item) => ({
       id: item.itemId,
-      name: item.itemName
-    }))
+      name: item.itemName,
+    })),
   };
 }

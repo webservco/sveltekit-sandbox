@@ -16,7 +16,7 @@ export function addNote(input: NoteInput) {
       // New item; "..." = expand properties; set the favorite flag;
       { ...input, favorite: false },
       // existing items; "..." = expand;
-      ...existingNotes
+      ...existingNotes,
     ];
   });
 }

@@ -9,7 +9,7 @@
     title: '',
     option: 0,
     description: '',
-    favorite: false
+    favorite: false,
   };
 </script>
 

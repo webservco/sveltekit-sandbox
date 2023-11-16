@@ -17,6 +17,6 @@ export function load({ cookies }) {
   cookies.set(cookieName, visitCounter.toString(), { path: '/' });
 
   return {
-    visitCounter
+    visitCounter,
   };
 }

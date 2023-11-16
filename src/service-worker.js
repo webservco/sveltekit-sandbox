@@ -26,7 +26,7 @@ const APP_CACHE_NAME = `hrdr-${version}`;
 
 const APP_STATIC_ASSETS = [
   ...build, // the app itself
-  ...files // everything in `static`
+  ...files, // everything in `static`
 ];
 
 /**
@@ -43,7 +43,7 @@ sw.addEventListener('install', (event) => {
       console.log('[Service Worker] Caching all.');
       // Note: with addAll, if one fails, all are discarded.
       return cache.addAll(APP_STATIC_ASSETS);
-    })()
+    })(),
   );
 });
 
@@ -62,11 +62,11 @@ sw.addEventListener('activate', (event) => {
           if (name !== APP_CACHE_NAME) {
             return caches.delete(name);
           }
-        })
+        }),
       );
       // Seems this (from Firefox) is discouraged (by Google):
       await sw.clients.claim();
-    })()
+    })(),
   );
 });
 
