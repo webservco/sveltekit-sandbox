@@ -16,7 +16,7 @@ export function load({ cookies }) {
  * Handle form data, FORM style.
  */
 export const actions = {
-  /** form: `action="?/create"` */
+  // form: `action="?/create"`
   create: async ({ cookies, request }) => {
     // simulate a slow network by adding an artificial delay
     await new Promise((fulfil) => setTimeout(fulfil, 3000));
@@ -37,7 +37,7 @@ export const actions = {
       });
     }
   },
-  /** form: `action="?/delete"` */
+  // form: `action="?/delete"`
   delete: async ({ cookies, request }) => {
     // simulate a slow network by adding an artificial delay
     await new Promise((fulfil) => setTimeout(fulfil, 3000));

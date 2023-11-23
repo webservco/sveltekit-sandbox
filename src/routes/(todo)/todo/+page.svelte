@@ -9,7 +9,7 @@
   // Transitions
   import { fly, slide } from 'svelte/transition';
   import IconTrash from '~icons/heroicons/trash';
-  import type { TodoItem } from '../../../app.js';
+  //import type { TodoItem } from '../../../app.js';
 
   export let data;
 
@@ -27,14 +27,14 @@
    * Status:
    * - seems to work (item is created) however page is not updated with the list of items.
    * - abandoned for the moment (use normal form and not in-plcee api call)
-   */
-  let creatingItemOnKeydown = async (e: KeyboardEvent) => {
+   *
+  let creatingItemOnKeydown = async (e: KeyboardEvent & { currentTarget: HTMLInputElement }) => {
     if (e.key === 'Enter') {
       // Prevent default action (form submit).
       e.preventDefault();
 
       // Get form value.
-      const input = e.currentTarget as HTMLInputElement;
+      const input = e.currentTarget;
       const description = input.value;
 
       // Create item via API call.
@@ -63,18 +63,19 @@
       input.value = '';
     }
   };
+  */
 
   /**
    * Delete item on click via API.
    *
    * Usage: `data-id={item.id} on:click={deleteItemOnClick}`
-   */
-  let deleteItemOnClick = async (e: MouseEvent) => {
+   *
+  let deleteItemOnClick = async (e: MouseEvent & { currentTarget: HTMLInputElement }) => {
     // Prevent default action (form submit).
     e.preventDefault();
 
     // Get item id.
-    const input = e.currentTarget as HTMLInputElement;
+    const input = e.currentTarget;
     const itemId = input.getAttribute('data-id');
     if (itemId === null) {
       return false;
@@ -90,6 +91,35 @@
 
     // Assign again items list. Without this, all works however data is not updated on the fly in the page
     data.items = data.items;
+  };
+  */
+
+  /**
+   * Mark item complete on checkbox change.
+   *
+   * Usage: `data-id={item.id} on:change={markCompleteOnChange}`
+   *
+   * https://stackoverflow.com/a/72340285/14583382
+   */
+  let markCompleteOnChange = async (e: Event & { currentTarget: HTMLInputElement }) => {
+    // Get form value.
+    const input = e.currentTarget;
+    const itemId = input.getAttribute('data-id');
+    if (itemId === null) {
+      return false;
+    }
+    const complete = input.checked;
+
+    // Save state via API call.
+    await fetch(`todo/api/${itemId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ complete }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    // Nothing else to do.
   };
 </script>
 
@@ -124,6 +154,7 @@
   <label>
     Add todo:
     <input
+      class="input"
       type="text"
       name="description"
       autocomplete="off"
@@ -160,7 +191,13 @@
           }}
         >
           <input type="hidden" name="itemId" value={item.id} />
-          <input type="checkbox" checked={item.complete} />
+          <input
+            class="checkbox"
+            type="checkbox"
+            checked={item.complete}
+            data-id={item.id}
+            on:change={markCompleteOnChange}
+          />
           <span>{item.description}</span>
           {#if deletingItems.includes(item.id)}
             <span class="badge variant-filled-warning">deleting...</span>
