@@ -1,10 +1,11 @@
 /**
- * In memory todo database.
+ * In memory todo database (1).
  *
  * https://learn.svelte.dev/tutorial/the-form-element
  */
 
 import type { TodoItem } from '../../app';
+import * as userLib from '$lib/todo/userLib';
 
 const database = new Map();
 
@@ -20,9 +21,9 @@ export function addItem(description: string, userId: string) {
   }
 
   items.push({
-    id: generateId(),
+    id: userLib.generateId(),
     description: description,
-    complete: false
+    complete: false,
   });
 }
 
@@ -35,18 +36,14 @@ export function deleteItem(itemId: string, userId: string) {
   }
 }
 
-export function generateId(): string {
-  return crypto.randomUUID();
-}
-
 export function getItems(userId: string) {
   if (!database.get(userId)) {
     database.set(userId, [
       {
-        id: generateId(),
+        id: userLib.generateId(),
         description: 'Make a list',
-        complete: false
-      }
+        complete: false,
+      },
     ]);
   }
 

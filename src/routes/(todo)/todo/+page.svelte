@@ -9,6 +9,7 @@
   // Transitions
   import { fly, slide } from 'svelte/transition';
   import IconTrash from '~icons/heroicons/trash';
+  import type { TodoItem } from '../../../app.js';
 
   export let data;
 
@@ -18,6 +19,78 @@
   // Use local state; handle slow network.
   let creatingItem = false;
   let deletingItems: string[] = [];
+
+  /**
+   * Create item on input enter via API.
+   *
+   * Usage: `on:keydown={creatingItemOnKeydown}`
+   * Status:
+   * - seems to work (item is created) however page is not updated with the list of items.
+   * - abandoned for the moment (use normal form and not in-plcee api call)
+   */
+  let creatingItemOnKeydown = async (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      // Prevent default action (form submit).
+      e.preventDefault();
+
+      // Get form value.
+      const input = e.currentTarget as HTMLInputElement;
+      const description = input.value;
+
+      // Create item via API call.
+      const response = await fetch('/todo/api', {
+        method: 'POST',
+        body: JSON.stringify({ description }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Get itemId from response.
+      const { itemId } = await response.json();
+
+      // Update local list of items (map).
+      data.items.set(itemId, {
+        id: itemId,
+        complete: false,
+        description: description,
+      } satisfies TodoItem);
+
+      // Assign again items list. Without this, all works however data is not updated on the fly in the page
+      data.items = data.items;
+
+      // Clear form input.
+      input.value = '';
+    }
+  };
+
+  /**
+   * Delete item on click via API.
+   *
+   * Usage: `data-id={item.id} on:click={deleteItemOnClick}`
+   */
+  let deleteItemOnClick = async (e: MouseEvent) => {
+    // Prevent default action (form submit).
+    e.preventDefault();
+
+    // Get item id.
+    const input = e.currentTarget as HTMLInputElement;
+    const itemId = input.getAttribute('data-id');
+    if (itemId === null) {
+      return false;
+    }
+
+    // Delete item.
+    await fetch(`/todo/api/${itemId}`, {
+      method: 'DELETE',
+    });
+
+    // Remove item from the list.
+    data.items.delete(itemId);
+
+    // Assign again items list. Without this, all works however data is not updated on the fly in the page
+    data.items = data.items;
+  };
 </script>
 
 <h2>TODO</h2>
@@ -35,6 +108,7 @@
   </aside>
 {/if}
 
+<!-- Add item -->
 <form
   method="POST"
   action="?/create"
@@ -50,6 +124,7 @@
   <label>
     Add todo:
     <input
+      type="text"
       name="description"
       autocomplete="off"
       required
@@ -58,7 +133,6 @@
     />
   </label>
 </form>
-
 {#if creatingItem}
   <aside class="alert variant-filled-surface">
     <div class="alert-message">
@@ -70,10 +144,9 @@
 <hr />
 
 <div class="centered">
-  <h3>Todo list</h3>
-
+  <h3>Items list</h3>
   <ul class="todos">
-    {#each data.items.filter((item) => !deletingItems.includes(item.id)) as item (item.id)}
+    {#each [...data.items.values()] as item}
       <li in:fly={{ y: 20 }} out:slide>
         <form
           method="POST"
@@ -87,10 +160,15 @@
           }}
         >
           <input type="hidden" name="itemId" value={item.id} />
+          <input type="checkbox" checked={item.complete} />
           <span>{item.description}</span>
-          <button class="btn btn-icon" aria-label="Complete">
-            <IconTrash />
-          </button>
+          {#if deletingItems.includes(item.id)}
+            <span class="badge variant-filled-warning">deleting...</span>
+          {:else}
+            <button type="submit" class="btn btn-icon" aria-label="Delete">
+              <IconTrash />
+            </button>
+          {/if}
         </form>
       </li>
     {/each}
