@@ -10,9 +10,9 @@ Notes from tutorial:
 // $contactStore is how you get the VALUE of your store
 */
 
-import { get } from "svelte/store";
-import { localStorageStore } from "@skeletonlabs/skeleton"; // Back up data
-import type { Writable } from "svelte/store"; // Handle data
+import { get } from 'svelte/store';
+import { localStorageStore } from '@skeletonlabs/skeleton'; // Back up data
+import type { Writable } from 'svelte/store'; // Handle data
 import type { Note, NoteInput } from '../../app';
 
 /*

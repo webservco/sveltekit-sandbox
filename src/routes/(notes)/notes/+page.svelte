@@ -2,9 +2,9 @@
   import NoteCard from '$lib/notes/NoteCard.svelte';
   import { noteStore, addNote } from '$lib/notes/NoteStore';
   import type { NoteInput } from '../../../app';
-  import type { PageServerData } from './$types';
 
   // Not needed when using local storage
+  //import type { PageServerData } from './$types';
   //export let data: PageServerData;
 
   let formData: NoteInput = {
@@ -12,7 +12,6 @@
     language: 'Plaintext',
     description: '',
   };
-
 
   // Not needed when using local storage
   //noteStore.set(data.notes);
@@ -24,7 +23,7 @@
   <NoteCard {note} {index} />
 {/each}
 
-<hr>
+<hr />
 
 <h3>Add note</h3>
 
