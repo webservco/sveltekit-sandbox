@@ -17,7 +17,7 @@ declare namespace App {
  */
 interface NoteInput {
   title: string;
-  option: int;
+  language: string;
   description: string;
 }
 interface Note extends NoteInput {

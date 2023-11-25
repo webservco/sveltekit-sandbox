@@ -7,7 +7,7 @@
 
   export let note: Note = {
     title: '',
-    option: 0,
+    language: 'Plaintext',
     description: '',
     favorite: false,
   };
@@ -34,6 +34,6 @@
     </div>
   </header>
   <section class="p-4">
-    <CodeBlock language={'HTML'} code={note.description} />
+    <CodeBlock language={note.language} code={note.description} />
   </section>
 </div>

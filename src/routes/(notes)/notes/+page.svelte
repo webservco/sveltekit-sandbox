@@ -9,7 +9,7 @@
 
   let formData: NoteInput = {
     title: '',
-    option: 1,
+    language: 'Plaintext',
     description: '',
   };
 
@@ -18,7 +18,15 @@
   //noteStore.set(data.notes);
 </script>
 
-<h3>Note</h3>
+<h3>Notes</h3>
+
+{#each $noteStore as note, index}
+  <NoteCard {note} {index} />
+{/each}
+
+<hr>
+
+<h3>Add note</h3>
 
 <div class="card p-4 w-full text-token space-y-4">
   <label class="label">
@@ -27,11 +35,17 @@
   </label>
 
   <label class="label">
-    <span>Option</span>
-    <select class="select" bind:value={formData.option}>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
+    <span>Language</span>
+    <select class="select" bind:value={formData.language}>
+      <option value="Bash">Bash</option>
+      <option value="CSS">CSS</option>
+      <option value="JavaScript">JavaScript</option>
+      <option value="JSON">JSON</option>
+      <option value="HTML">HTML</option>
+      <option value="Markdown">Markdown</option>
+      <option value="PHP">PHP</option>
+      <option value="Plaintext">Plaintext</option>
+      <option value="Shell">Shell</option>
     </select>
   </label>
 
@@ -53,11 +67,3 @@
     Add
   </button>
 </div>
-
-<hr />
-
-<h3>Notes</h3>
-
-{#each $noteStore as note, index}
-  <NoteCard {note} {index} />
-{/each}
