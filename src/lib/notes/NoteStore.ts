@@ -1,12 +1,27 @@
 /*
-Volatile database (lost even on page reload).
-From the SvelteKit+Typescript YT tutorial
+Local storage database
+From "SvelteKit Stores Using Local Storage With Skeleton UI (Persistent Store)"
+Repo: https://github.com/coopercodes/SvelteKitLocalStorageStores
+
+Notes from tutorial:
+// contactStore is a writable which holds an array of contacts
+// $contactStore
+// contactStore is the writable object (subscribe, delete, change value)
+// $contactStore is how you get the VALUE of your store
 */
 
-import { writable, get } from 'svelte/store';
+import { get } from "svelte/store";
+import { localStorageStore } from "@skeletonlabs/skeleton"; // Back up data
+import type { Writable } from "svelte/store"; // Handle data
 import type { Note, NoteInput } from '../../app';
 
+/*
+Volatile database (lost even on page reload).
+From the SvelteKit+Typescript YT tutorial
+import { writable } from 'svelte/store';
 export const noteStore = writable<Note[]>([]);
+*/
+export const noteStore: Writable<Note[]> = localStorageStore('noteStore', []);
 
 export function addNote(input: NoteInput) {
   const existingNotes = get(noteStore);

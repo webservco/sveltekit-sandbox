@@ -4,7 +4,8 @@
   import type { NoteInput } from '../../../app';
   import type { PageServerData } from './$types';
 
-  export let data: PageServerData;
+  // Not needed when using local storage
+  //export let data: PageServerData;
 
   let formData: NoteInput = {
     title: '',
@@ -12,7 +13,9 @@
     description: '',
   };
 
-  noteStore.set(data.notes);
+
+  // Not needed when using local storage
+  //noteStore.set(data.notes);
 </script>
 
 <h3>Note</h3>
