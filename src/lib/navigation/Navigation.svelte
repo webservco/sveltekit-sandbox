@@ -1,3 +1,8 @@
+<!--
+Navigation component.render
+
+Improvement idea: make individual links components: https://stackoverflow.com/questions/70613169/sveltekit-styling-active-links-with-page-path
+-->
 <script lang="ts">
   import { getDrawerStore } from '@skeletonlabs/skeleton';
 
