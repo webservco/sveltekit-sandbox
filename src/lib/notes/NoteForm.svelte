@@ -3,11 +3,24 @@
 import type { NoteInput } from "../../app";
 import { addNote } from "./NoteStore";
 
-let formData: NoteInput = {
+export let noteIndex: number;
+
+export let formData: NoteInput = {
     title: '',
     language: 'Plaintext',
     description: '',
   };
+
+let handleForm = async (e: MouseEvent & { currentTarget: HTMLButtonElement }) => {
+
+    if (noteIndex === undefined) {
+        // Add item
+        addNote(formData);
+    } else {
+        // Edit item
+    }
+};
+
 
 </script>
 
@@ -45,7 +58,7 @@ let formData: NoteInput = {
     <button
       type="button"
       class="btn btn-sm variant-filled-primary"
-      on:click={() => addNote(formData)}
+      on:click={handleForm}
     >
       Save
     </button>
