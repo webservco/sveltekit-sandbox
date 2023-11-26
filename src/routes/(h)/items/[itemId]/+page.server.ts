@@ -9,7 +9,7 @@ import { items } from '../itemsData.js';
 
 export function load({ params }) {
   /**
-   * Get item form data source, but id from RouteParams.
+   * Get item from data source, and id from RouteParams.
    *
    * `params.itemId` is a string including the fake file extension
    * So for itemId 1, it will be "1.html".
