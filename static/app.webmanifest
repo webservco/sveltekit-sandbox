@@ -1,6 +1,6 @@
 {
   "background_color": "#FFF",
-  "description": "H PWA",
+  "description": "SvelteKit Sandbox",
   "display": "standalone",
   "display_override": ["fullscreen", "minimal-ui"],
   "icons": [
@@ -16,9 +16,9 @@
       "sizes": "192x192"
     }
   ],
-  "id": "hrdrpwa",
-  "name": "Hoard-R",
-  "short_name": "H",
+  "id": "sandboxpwa",
+  "name": "Sandbox",
+  "short_name": "dev",
   "start_url": "/",
   "theme_color": "#0AA"
 }
