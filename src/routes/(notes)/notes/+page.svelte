@@ -10,6 +10,15 @@
 
   // Not needed when using local storage
   //noteStore.set(data.notes);
+
+  // Default data to use in the form
+  let noteIndex: number;
+
+  const formData: NoteInput = {
+    title: '',
+    language: 'Plaintext',
+    description: '',
+  };
 </script>
 
 <h3>Notes</h3>
@@ -22,4 +31,4 @@
 
 <h3>Add note</h3>
 
-<NoteForm />
+<NoteForm {noteIndex} {formData} />
