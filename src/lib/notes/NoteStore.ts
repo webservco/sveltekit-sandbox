@@ -14,12 +14,15 @@ import { get } from 'svelte/store';
 import { localStorageStore } from '@skeletonlabs/skeleton'; // Back up data
 import type { Writable } from 'svelte/store'; // Handle data
 import type { Note, NoteInput } from '../../app';
+import exp from 'constants';
 
 /*
 Volatile database (lost even on page reload).
 From the SvelteKit+Typescript YT tutorial
 import { writable } from 'svelte/store';
 export const noteStore = writable<Note[]>([]);
+
+Local storage database:
 */
 export const noteStore: Writable<Note[]> = localStorageStore('noteStore', []);
 
@@ -38,7 +41,30 @@ export function addNote(input: NoteInput) {
 
 export function deleteNote(index: number) {
   const existingNotes = get(noteStore);
+
   existingNotes.splice(index, 1);
+  noteStore.update(() => {
+    return existingNotes;
+  });
+}
+
+export function retrieveNote(index: number): Note {
+  const existingNotes = get(noteStore);
+
+  const note = existingNotes.at(index);
+
+  if (note === undefined) {
+    throw new Error('Item not found');
+  }
+
+  return note;
+}
+
+export function setNoteAtIndex(index: number, input: NoteInput) {
+  const existingNotes = get(noteStore);
+
+  existingNotes[index] = { ...input, favorite: false };
+
   noteStore.update(() => {
     return existingNotes;
   });

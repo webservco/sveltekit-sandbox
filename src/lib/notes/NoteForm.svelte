@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { redirect } from "@sveltejs/kit";
+
 
 import type { NoteInput } from "../../app";
-import { addNote } from "./NoteStore";
+import { addNote, setNoteAtIndex } from "./NoteStore";
+    import { goto } from "$app/navigation";
 
 export let noteIndex: number;
 
@@ -18,9 +21,11 @@ let handleForm = async (e: MouseEvent & { currentTarget: HTMLButtonElement }) =>
         addNote(formData);
     } else {
         // Edit item
+        setNoteAtIndex(noteIndex, formData);
+        // Redirect back
+        goto('/notes');
     }
 };
-
 
 </script>
 
@@ -57,7 +62,7 @@ let handleForm = async (e: MouseEvent & { currentTarget: HTMLButtonElement }) =>
 
     <button
       type="button"
-      class="btn btn-sm variant-filled-primary"
+      class="btn btn-sm variant-filled-secondary"
       on:click={handleForm}
     >
       Save

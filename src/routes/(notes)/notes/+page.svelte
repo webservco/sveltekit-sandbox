@@ -21,7 +21,7 @@
   };
 </script>
 
-<h3>Notes</h3>
+<h1>Notes <span class="badge variant-ghost-primary">localStorage</span></h1>
 
 {#each $noteStore as note, index}
   <NoteCard {note} {index} />

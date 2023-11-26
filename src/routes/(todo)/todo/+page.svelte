@@ -8,6 +8,7 @@
   import { enhance } from '$app/forms';
   // Transitions
   import { fly, slide } from 'svelte/transition';
+  // https://icones.js.org/collection/heroicons
   import IconTrash from '~icons/heroicons/trash';
   //import type { TodoItem } from '../../../app.js';
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-<h2>TODO</h2>
+<h1>Todo <span class="badge variant-ghost-primary">volatile</span></h1>
 
 <p>userId: {data.userId}</p>
 

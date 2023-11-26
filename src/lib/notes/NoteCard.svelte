@@ -3,6 +3,12 @@
   import { deleteNote, toggleFavorite } from './NoteStore';
   import type { Note } from '../../app';
 
+  // https://icones.js.org/collection/heroicons
+  import IconFavYes from '~icons/heroicons/hand-thumb-up-solid';
+  import IconFavNo from '~icons/heroicons/hand-thumb-up';
+  import IconEdit from '~icons/heroicons/pencil';
+  import IconTrash from '~icons/heroicons/trash';
+
   export let index: number;
 
   export let note: Note = {
@@ -17,19 +23,29 @@
   <header class="card-header">
     {note.title}
     <div class="float-right">
+      <a
+        class="btn btn-sm variant-ghost-primary"
+        href="/notes/{index}"
+        >
+        <IconEdit />
+      </a>
       <button
         type="button"
-        class="btn btn-sm variant-filled-secondary"
+        class="btn btn-sm variant-ghost-secondary"
         on:click={() => toggleFavorite(index)}
       >
-        {note.favorite ? 'Unfavorite' : 'Favorite'}
+      {#if note.favorite}
+      <IconFavYes/>
+      {:else}
+      <IconFavNo />
+      {/if}
       </button>
       <button
         type="button"
-        class="btn btn-sm variant-filled-error"
+        class="btn btn-sm variant-ghost-error"
         on:click={() => deleteNote(index)}
       >
-        x
+        <IconTrash />
       </button>
     </div>
   </header>
