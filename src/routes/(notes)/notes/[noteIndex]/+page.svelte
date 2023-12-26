@@ -10,7 +10,7 @@
     const note = browser ? retrieveNote(data.noteIndex): undefined;
 
     if (browser && note === undefined) {
-        throw error(404);
+        error(404);
     }
 
     // Using directly `data.noteIndex` in `<NoteForm>` give an error

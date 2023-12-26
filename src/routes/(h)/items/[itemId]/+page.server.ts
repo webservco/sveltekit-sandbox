@@ -18,7 +18,7 @@ export function load({ params }) {
   const item = items.find((item) => item.itemId === parseInt(params.itemId));
 
   // General error if item not found.
-  if (!item) throw error(404);
+  if (!item) error(404);
 
   return {
     item,
