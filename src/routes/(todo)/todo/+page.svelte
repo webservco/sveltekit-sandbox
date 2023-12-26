@@ -27,7 +27,7 @@
    * Usage: `on:keydown={creatingItemOnKeydown}`
    * Status:
    * - seems to work (item is created) however page is not updated with the list of items.
-   * - abandoned for the moment (use normal form and not in-plcee api call)
+   * - abandoned for the moment (use normal form and not in-place api call)
    *
   let creatingItemOnKeydown = async (e: KeyboardEvent & { currentTarget: HTMLInputElement }) => {
     if (e.key === 'Enter') {
