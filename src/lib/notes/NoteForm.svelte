@@ -12,8 +12,8 @@
   };
 
   let handleForm = async (event: MouseEvent & { currentTarget: HTMLButtonElement }) => {
-    /** @todo REMOVE*/
-    console.log(event);
+    // Prevent "error  'event' is defined but never used  @typescript-eslint/no-unused-vars"
+    console.log(event.type);
 
     if (noteIndex === undefined) {
       // Add item
