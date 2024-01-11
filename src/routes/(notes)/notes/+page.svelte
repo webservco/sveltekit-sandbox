@@ -1,7 +1,7 @@
 <script lang="ts">
   import NoteCard from '$lib/notes/NoteCard.svelte';
   import NoteForm from '$lib/notes/NoteForm.svelte';
-  import { noteStore, addNote } from '$lib/notes/NoteStore';
+  import { noteStore } from '$lib/notes/NoteStore';
   import type { NoteInput } from '../../../app';
 
   // Not needed when using local storage

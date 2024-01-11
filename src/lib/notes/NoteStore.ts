@@ -14,7 +14,6 @@ import { get } from 'svelte/store';
 import { localStorageStore } from '@skeletonlabs/skeleton'; // Back up data
 import type { Writable } from 'svelte/store'; // Handle data
 import type { Note, NoteInput } from '../../app';
-import exp from 'constants';
 
 /*
 Volatile database (lost even on page reload).

@@ -23,10 +23,7 @@
   <header class="card-header">
     {note.title}
     <div class="float-right">
-      <a
-        class="btn btn-sm variant-ghost-primary"
-        href="/notes/{index}"
-        >
+      <a class="btn btn-sm variant-ghost-primary" href="/notes/{index}">
         <IconEdit />
       </a>
       <button
@@ -34,11 +31,11 @@
         class="btn btn-sm variant-ghost-secondary"
         on:click={() => toggleFavorite(index)}
       >
-      {#if note.favorite}
-      <IconFavYes/>
-      {:else}
-      <IconFavNo />
-      {/if}
+        {#if note.favorite}
+          <IconFavYes />
+        {:else}
+          <IconFavNo />
+        {/if}
       </button>
       <button
         type="button"
