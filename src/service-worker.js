@@ -11,13 +11,17 @@
  * https://kit.svelte.dev/docs/service-workers#type-safety
  *
  * @todo study: [SvelteKit service worker example](https://gist.github.com/khromov/6042d297f9d7ec356da1a7c85f6601c8)
+ * @todo check for updates: https://kit.svelte.dev/docs/service-workers
  */
 
 /// <reference types="@sveltejs/kit" />
+
+/**
+ * Seems to be forme here: https://github.com/microsoft/TypeScript/issues/11781#issuecomment-1116384712
+ */
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
-
 const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
 
 import { build, files, version } from '$service-worker';
@@ -89,7 +93,11 @@ sw.addEventListener('fetch', (event) => {
 
     // `build`/`files` can always be served from the cache
     if (APP_STATIC_ASSETS.includes(url.pathname)) {
-      return cache.match(url.pathname);
+      const response = await cache.match(url.pathname);
+
+      if (response) {
+        return response;
+      }
     }
 
     // for everything else, try the network first, but
@@ -97,13 +105,27 @@ sw.addEventListener('fetch', (event) => {
     try {
       const response = await fetch(event.request);
 
+      // if we're offline, fetch can return a value that is not a Response
+      // instead of throwing - and we can't pass this non-Response to respondWith
+      if (!(response instanceof Response)) {
+        throw new Error('invalid response from fetch');
+      }
+
       if (response.status === 200) {
         cache.put(event.request, response.clone());
       }
 
       return response;
-    } catch {
-      return cache.match(event.request);
+    } catch (err) {
+      const response = await cache.match(event.request);
+
+      if (response) {
+        return response;
+      }
+
+      // if there's no cache, then just error out
+      // as there is nothing we can do to respond to this request
+      throw err;
     }
   }
 
