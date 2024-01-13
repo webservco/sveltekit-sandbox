@@ -8,10 +8,10 @@
   export let data: PageData;
 
   // Client API:
-  const { form, errors, constraints } = superForm(data.form);
+  const { form, enhance, errors, constraints } = superForm(data.form);
 </script>
 
-<form method="POST">
+<form method="POST" use:enhance>
   <div class="card p-4 w-full text-token space-y-4">
     <label for="name">Name</label>
     <input
