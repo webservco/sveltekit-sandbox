@@ -3,7 +3,7 @@ import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 
 const schema = z.object({
-  name: z.string().min(4).max(30).includes('test'),
+  name: z.string().min(4).max(30).includes('test', {message: 'Missing the secret stuff'}),
   email: z.string().email().min(6).max(10),
 });
 
