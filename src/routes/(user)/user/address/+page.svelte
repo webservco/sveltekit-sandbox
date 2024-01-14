@@ -11,6 +11,8 @@
   const { form, enhance, errors, constraints } = superForm(data.form);
 </script>
 
+<h2>Insert an address in the database.</h2>
+
 <form method="POST" use:enhance>
   <div class="card p-4 w-full text-token space-y-4">
     <label for="name">Name</label>

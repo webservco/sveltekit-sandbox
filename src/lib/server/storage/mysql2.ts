@@ -1,6 +1,6 @@
 import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from '$env/static/private';
 import mysql from 'mysql2/promise';
-import type { DatabaseError } from '../../../app';
+import type DatabaseError from '$lib/types/ambient';
 
 // Create the connection pool. The pool-specific settings are the defaults
 export const databaseConnectionPool = mysql.createPool({
@@ -36,12 +36,12 @@ export function getDatabaseError(object: unknown): DatabaseError {
     return result;
   }
 
-  if ('code' in object && typeof object.code === 'string') {
-    result.code = object.code;
+  if ('code' in object) {
+    result.code = String(object.code);
   }
 
-  if ('errno' in object && typeof object.errno === 'string') {
-    result.errno = object.errno;
+  if ('errno' in object) {
+    result.errno = Number(object.errno);
   }
 
   if ('fatal' in object && typeof object.fatal === 'boolean') {

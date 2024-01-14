@@ -6,7 +6,6 @@
  * https://learn.svelte.dev/tutorial/post-handlers
  */
 
-import type { TodoItem, TodoItemInput } from '../../app';
 import * as userLib from '$lib/todo/userLib';
 
 const database = new Map();

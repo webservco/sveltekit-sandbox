@@ -10,7 +10,6 @@
   import { fly, slide } from 'svelte/transition';
   // https://icones.js.org/collection/heroicons
   import IconTrash from '~icons/heroicons/trash';
-  //import type { TodoItem } from '../../../app.js';
 
   export let data;
 

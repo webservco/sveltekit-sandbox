@@ -30,5 +30,9 @@ Improvement idea: make individual links components: https://stackoverflow.com/qu
     <li><a href="/visitCounter" on:click={drawerClose}>Visit counter</a></li>
 
     <li><a href="/about" on:click={drawerClose}>About</a></li>
+
+    <li><a href="/user/address" on:click={drawerClose}>Superforms (address)</a></li>
+
+    <li><a href="/user/auth" on:click={drawerClose}>Auth</a></li>
   </ul>
 </nav>

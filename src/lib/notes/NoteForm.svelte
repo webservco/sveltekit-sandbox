@@ -1,7 +1,9 @@
 <script lang="ts">
-  import type { NoteInput } from '../../app';
   import { addNote, setNoteAtIndex } from './NoteStore';
   import { goto } from '$app/navigation';
+
+  // Despite being global, needed ot avoid linter "not defined" error
+  import type NoteInput from '$lib/types/ambient';
 
   export let noteIndex: number;
 

@@ -1,13 +1,15 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
   import { deleteNote, toggleFavorite } from './NoteStore';
-  import type { Note } from '../../app';
 
   // https://icones.js.org/collection/heroicons
   import IconFavYes from '~icons/heroicons/hand-thumb-up-solid';
   import IconFavNo from '~icons/heroicons/hand-thumb-up';
   import IconEdit from '~icons/heroicons/pencil';
   import IconTrash from '~icons/heroicons/trash';
+
+  // Despite being global, needed ot avoid linter "not defined" error
+  import type Note from '$lib/types/ambient';
 
   export let index: number;
 

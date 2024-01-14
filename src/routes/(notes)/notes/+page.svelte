@@ -2,7 +2,9 @@
   import NoteCard from '$lib/notes/NoteCard.svelte';
   import NoteForm from '$lib/notes/NoteForm.svelte';
   import { noteStore } from '$lib/notes/NoteStore';
-  import type { NoteInput } from '../../../app';
+
+  // Despite being global, needed ot avoid linter "not defined" error
+  import type NoteInput from '$lib/types/ambient';
 
   // Not needed when using local storage
   //import type { PageServerData } from './$types';

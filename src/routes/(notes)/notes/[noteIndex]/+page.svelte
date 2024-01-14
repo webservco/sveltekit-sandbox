@@ -3,7 +3,9 @@
   import { error } from '@sveltejs/kit';
   import { retrieveNote } from '$lib/notes/NoteStore.js';
   import NoteForm from '$lib/notes/NoteForm.svelte';
-  import type { NoteInput } from '../../../../app.js';
+
+  // Despite being global, needed ot avoid linter "not defined" error
+  import type NoteInput from '$lib/types/ambient';
 
   export let data;
 

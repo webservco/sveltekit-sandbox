@@ -51,6 +51,8 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.5.3",
-    "highlight.js": "^11.9.0"
+    "@lucia-auth/adapter-mysql": "^2.1.0",
+    "highlight.js": "^11.9.0",
+    "lucia": "^2.7.6"
   }
 }
