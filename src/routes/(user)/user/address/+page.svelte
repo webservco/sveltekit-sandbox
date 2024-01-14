@@ -26,12 +26,12 @@
       {...$constraints.name}
     />
     {#if $errors.name}
-        <span class="text-error-500">{$errors.name}</span>
+      <span class="text-error-500">{$errors.name}</span>
     {/if}
 
     <label for="email">Email</label>
     <input
-    class="input {$errors.email ? 'input-error' : ''}"
+      class="input {$errors.email ? 'input-error' : ''}"
       type="email"
       id="email"
       name="email"
@@ -42,7 +42,7 @@
       {...$constraints.email}
     />
     {#if $errors.email}
-        <span class="text-error-500">{$errors.email}</span>
+      <span class="text-error-500">{$errors.email}</span>
     {/if}
 
     <button type="submit" class="btn btn-sm variant-filled-primary">Submit</button>

@@ -11,6 +11,19 @@ declare namespace App {
 }
 
 /**
+ * Database error interface
+ */
+interface DatabaseError {
+  code: string | null;
+  errno: string | null;
+  fatal: boolean | null;
+  message: string;
+  sql: string | null;
+  sqlMessage: string | null;
+  sqlState: string | null;
+}
+
+/**
  * Notes section.
  *
  * [SvelteKit 1.0 and TypeScript Course - Build A Type-Safe SvelteKit 1.0 App](https://www.youtube.com/watch?v=4soqks5zBLI)
@@ -25,7 +38,7 @@ interface Note extends NoteInput {
 }
 
 /**
- * TODO section
+ * Todo section
  */
 interface TodoItemInput {
   description: string;
