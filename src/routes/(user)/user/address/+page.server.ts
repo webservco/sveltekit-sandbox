@@ -35,8 +35,8 @@ export const actions = {
     // TODO: Do something with the validated form.data
     try {
       const [rows, fields] = await databaseConnectionPool.execute(
-        "INSERT INTO db.address (name, email) VALUES (?, ?)",
-        [form.data.name, form.data.email]
+        'INSERT INTO db.address (name, email) VALUES (?, ?)',
+        [form.data.name, form.data.email],
       );
       console.log('rows', rows);
       console.log('fields', fields);
