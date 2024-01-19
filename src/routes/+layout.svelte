@@ -86,9 +86,9 @@
 
   <div class="container p-10 space-y-4">
     <!-- +page.svelte is rendered in this <slot> -->
-      {#key lang}
-        <slot />
-      {/key}
+    {#key lang}
+      <slot />
+    {/key}
   </div>
 
   <svelte:fragment slot="footer">
