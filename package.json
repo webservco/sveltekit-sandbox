@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.141",
+    "@inlang/paraglide-js": "1.2.1",
+    "@inlang/paraglide-js-adapter-vite": "^1.2.7",
     "@playwright/test": "^1.28.1",
     "@skeletonlabs/skeleton": "2.4.0",
     "@skeletonlabs/tw-plugin": "0.2.3",

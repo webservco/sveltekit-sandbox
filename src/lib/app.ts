@@ -4,5 +4,7 @@
  * https://learn.svelte.dev/tutorial/lib
  */
 
-// Use as app version.
+import * as m from '$paraglide/messages';
+
+export const appName = m.sandbox();
 export const appVersion = '0.0.1';

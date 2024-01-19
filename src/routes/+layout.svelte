@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { appVersion } from '$lib/appVersion';
+  import * as m from '$paraglide/messages';
+  import { appName, appVersion } from '$lib/app';
   import '../app.postcss';
 
   // Floating UI for Popups
@@ -31,7 +32,20 @@
   import { page } from '$app/stores';
 
   $: classesSidebar = $page.url.pathname === '/' ? 'w-0 md:w-64' : 'w-0';
+
+  // I18n
+  import { browser } from '$app/environment';
+  import { setLanguageTag, sourceLanguageTag, type AvailableLanguageTag } from '$paraglide/runtime';
+  //Use the default language if no language is given
+  $: lang = ($page.params.lang as AvailableLanguageTag) ?? sourceLanguageTag;
+  $: setLanguageTag(lang);
+  //Set the lang attribute on the html tag
+  $: if (browser) document.documentElement.lang = lang;
 </script>
+
+<svelte:head>
+  <title>{appName}</title>
+</svelte:head>
 
 <!-- [How to implement a responsive sidebar drawer](https://www.skeleton.dev/blog/how-to-implement-a-responsive-sidebar-drawer) -->
 <Drawer>
@@ -55,7 +69,7 @@
               </svg>
             </span>
           </button>
-          <a href="/"><strong class="text-xl uppercase">Sandbox</strong></a>
+          <a href="/"><strong class="text-xl uppercase">{m.sandbox()}</strong></a>
         </div>
       </svelte:fragment>
 
@@ -72,7 +86,9 @@
 
   <div class="container p-10 space-y-4">
     <!-- +page.svelte is rendered in this <slot> -->
-    <slot />
+      {#key lang}
+        <slot />
+      {/key}
   </div>
 
   <svelte:fragment slot="footer">
