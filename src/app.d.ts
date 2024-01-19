@@ -20,7 +20,8 @@ declare global {
     type DatabaseUserAttributes = {
       email: string;
     };
-    type DatabaseSessionAttributes = {};
+    //type DatabaseSessionAttributes = {};
+    type DatabaseSessionAttributes = unknown;
   }
 }
 
