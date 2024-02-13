@@ -17,7 +17,7 @@
 /// <reference types="@sveltejs/kit" />
 
 /**
- * Seems to be forme here: https://github.com/microsoft/TypeScript/issues/11781#issuecomment-1116384712
+ * Seems to be from here: https://github.com/microsoft/TypeScript/issues/11781#issuecomment-1116384712
  */
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
@@ -26,7 +26,7 @@ const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self
 
 import { build, files, version } from '$service-worker';
 
-const APP_CACHE_NAME = `hrdr-${version}`;
+const APP_CACHE_NAME = `sandboxpwa-${version}`;
 
 const APP_STATIC_ASSETS = [
   ...build, // the app itself
